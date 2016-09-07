@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201609070746251_Added gender,dob columns to UserInfo.cs" />
+    <Compile Include="Migrations\201609070746251_Added gender,dob columns to UserInfo.Designer.cs">
+      <DependentUpon>201609070746251_Added gender,dob columns to UserInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SQLDataProvider\GenericRepositorySQLImpl.cs" />
     <Compile Include="SQLDataProvider\PersonalDiaryDbContext.cs" />
@@ -63,6 +67,11 @@
       <Project>{ff4102fb-62f3-4d69-9633-0a1b67497f5c}</Project>
       <Name>PersonalDiary.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609070746251_Added gender,dob columns to UserInfo.resx">
+      <DependentUpon>201609070746251_Added gender,dob columns to UserInfo.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
