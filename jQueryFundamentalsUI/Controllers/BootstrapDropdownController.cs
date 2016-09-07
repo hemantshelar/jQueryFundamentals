@@ -1,4 +1,5 @@
-﻿using System;
+﻿using jQueryFundamentalsUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,19 @@ namespace jQueryFundamentalsUI.Controllers
     public class BootstrapDropdownController : Controller
     {
         // GET: BootstrapDropdown
-        public ActionResult Index()
+        public ActionResult BootStrapDropdownExample1()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult BootStrapDropdownExample1(TestCustomerModel model)
+        {
+            return RedirectToAction("BootStrapDropdownExample1");
+        }
+        public ActionResult Test()
+        {
+            return new EmptyResult();
         }
     }
 }

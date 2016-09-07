@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jQueryFundamentalsUI", "jQueryFundamentalsUI\jQueryFundamentalsUI.csproj", "{71AED77A-545A-483E-A21D-82F864413F68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Domain", "PersonalDiary.Domain\PersonalDiary.Domain.csproj", "{FF4102FB-62F3-4D69-9633-0A1B67497F5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2F60CEB2-6529-491B-B710-2ED5D7A88C3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{71AED77A-545A-483E-A21D-82F864413F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71AED77A-545A-483E-A21D-82F864413F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71AED77A-545A-483E-A21D-82F864413F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF4102FB-62F3-4D69-9633-0A1B67497F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4102FB-62F3-4D69-9633-0A1B67497F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4102FB-62F3-4D69-9633-0A1B67497F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF4102FB-62F3-4D69-9633-0A1B67497F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F60CEB2-6529-491B-B710-2ED5D7A88C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F60CEB2-6529-491B-B710-2ED5D7A88C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F60CEB2-6529-491B-B710-2ED5D7A88C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F60CEB2-6529-491B-B710-2ED5D7A88C3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
