@@ -9,8 +9,8 @@ namespace PersonalDiary.Domain
 {
     public interface IGenericUnitOfWork
     {
-        IGnericRepository<Address> AddressRepository { get;}
-        IGnericRepository<UserInfo> UserInfoRepository { get; }
+        IGenericRepository<Address> AddressRepository { get;}
+        IGenericRepository<UserInfo> UserInfoRepository { get; }
         void Save();
     }
 }

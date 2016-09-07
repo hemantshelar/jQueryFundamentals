@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalDiary.Domain
 {
-    public interface IGnericRepository<T> where T : IDbEntity
+    public interface IGenericRepository<T> where T : IDbEntity
     {
         void Add(T newEntity);
         void Update(T updatedEntity);

@@ -11,17 +11,17 @@ namespace DAL.SQLDataProvider
     {
         private PersonalDiaryDbContext _dbContext;
 
-        private IGnericRepository<UserInfo> _userInfoRepository = null;
-        private IGnericRepository<Address> _addressRepository = null;
+        private IGenericRepository<UserInfo> _userInfoRepository = null;
+        private IGenericRepository<Address> _addressRepository = null;
 
         public SQLUnitOfWork(PersonalDiaryDbContext _dbContext)
         {
             this._dbContext = _dbContext;
         }
 
-        public IGnericRepository<UserInfo> UserInfoRepository { get; set; }
+        public IGenericRepository<UserInfo> UserInfoRepository { get; set; }
 
-        IGnericRepository<Address> IGenericUnitOfWork.AddressRepository
+        IGenericRepository<Address> IGenericUnitOfWork.AddressRepository
         {
             get 
             {
@@ -33,7 +33,7 @@ namespace DAL.SQLDataProvider
             }
         }
 
-        IGnericRepository<UserInfo> IGenericUnitOfWork.UserInfoRepository
+        IGenericRepository<UserInfo> IGenericUnitOfWork.UserInfoRepository
         {
             get 
             {
