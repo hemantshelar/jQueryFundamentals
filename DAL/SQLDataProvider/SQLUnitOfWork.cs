@@ -25,7 +25,7 @@ namespace DAL.SQLDataProvider
         {
             get 
             {
-                if (_userInfoRepository == null)
+                if (_addressRepository == null)
                 {
                     _addressRepository = new GenericRepositorySQLImpl<Address>(_dbContext);                    
                 }

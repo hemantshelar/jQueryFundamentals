@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +49,39 @@ namespace DAL.SQLDataProvider
                 throw new Exception("Record not found.");
             }
             _dbContext.Entry(entityToDelete).State = EntityState.Deleted;
+        }
+
+
+        IQueryable<T> IGnericRepository<T>.Filter(string searchTerm)
+        {
+
+            throw new NotImplementedException("Method not implemented yet!");
+            IQueryable<T> result = null;
+            try
+            {
+                var _properties = typeof(T).GetProperties().Where(p => p.PropertyType == typeof(string)).ToList();
+                foreach (var item in _properties)
+                {
+                    string i = item.ToString();
+                    Console.WriteLine(item.ToString());
+                }
+
+
+                Expression<Func<T, bool>> ex = (T  i) => i == null;
+                //Expression<Func<int, bool>> test = Expression.
+                Expression<Func<int, int>> expr = (x) => x + 1;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
+        }
+
+
+        IQueryable<T> IGnericRepository<T>.Filter(Expression<Func<T, bool>> expression)
+        {
+            return entites.Where(expression).AsQueryable();
         }
     }
 }
