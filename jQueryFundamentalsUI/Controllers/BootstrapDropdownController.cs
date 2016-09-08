@@ -1,4 +1,5 @@
 ﻿using jQueryFundamentalsUI.Models;
+using PersonalDiary.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace jQueryFundamentalsUI.Controllers
 {
     public class BootstrapDropdownController : Controller
     {
+        private IGenericUnitOfWork _UnitOfWork = null;
+        public BootstrapDropdownController(IGenericUnitOfWork _uow)
+        {
+            _UnitOfWork = _uow;
+        }
         // GET: BootstrapDropdown
         public ActionResult BootStrapDropdownExample1()
         {

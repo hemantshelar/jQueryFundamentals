@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using jQueryFundamentalsUI.Models;
+using PersonalDiary.Domain;
 
 namespace jQueryFundamentalsUI.Controllers
 {
@@ -15,9 +16,10 @@ namespace jQueryFundamentalsUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public ManageController()
+        private IGenericUnitOfWork _UnitOfWork = null;
+        public ManageController(IGenericUnitOfWork _uow)
         {
+            _UnitOfWork = _uow;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

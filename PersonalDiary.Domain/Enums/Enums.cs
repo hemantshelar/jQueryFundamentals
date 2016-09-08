@@ -19,4 +19,12 @@ namespace PersonalDiary.Domain.Enums
         SMS = 1,
         Call = 2,
     }
+
+    public enum EnumUserExtendedStatus
+    {
+        New = 0,
+        Active = 1,
+        Blocked = 2,
+        Special=3
+    }
 }

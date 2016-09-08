@@ -10,8 +10,9 @@ namespace PersonalDiary.Domain
     public class UserInfo : IDbEntity
     {
         public int Id { get; set; }
-        public int AspNetUsers_Id { get; set; }
+        public string AspNetUsers_Id { get; set; }
         public EnumGender Gender { get; set; }
+        public EnumUserExtendedStatus UserExtendedStatus { get; set; }
         public DateTime? DOB { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalDiary.Domain
 {
-    public class Reminder
+    public class Reminder : IDbEntity
     {
         public int Id { get; set; }
         public int UserInfoId { get; set; }

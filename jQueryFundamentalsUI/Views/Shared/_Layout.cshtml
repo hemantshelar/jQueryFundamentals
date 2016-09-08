@@ -31,6 +31,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if ( User.Identity.IsAuthenticated && User.IsInRole(PersonalDiary.Domain.Constants.Roles.Admin))
+                    { 
+                        <li>@Html.ActionLink("Manage Users", "Index", "Home")</li>
+                    }
                     <li>@Html.ActionLink("Fundamentals", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>

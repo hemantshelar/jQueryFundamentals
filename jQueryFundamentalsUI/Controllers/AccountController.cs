@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using jQueryFundamentalsUI.Models;
+using  PersonalDiary.Domain;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace jQueryFundamentalsUI.Controllers
 {
@@ -17,9 +19,15 @@ namespace jQueryFundamentalsUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IGenericUnitOfWork _UnitOfWork =null;
 
-        public AccountController()
+        public AccountController() 
         {
+
+        }
+        public AccountController(IGenericUnitOfWork _uow)
+        {
+            _UnitOfWork = _uow;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -52,6 +60,28 @@ namespace jQueryFundamentalsUI.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult SomeIssue()
+        {
+            return View();
+        }
+
+        public ActionResult ThanksForRegistering()
+        {
+            //Request.LogonUserIdentity. 
+            Console.WriteLine(Request.LogonUserIdentity.Name);
+            IGenericUnitOfWork uow = DependencyResolver.Current.GetService<IGenericUnitOfWork>();
+            uow.UserInfoRepository.Add(new UserInfo
+                {
+                    AspNetUsers_Id = User.Identity.GetUserId(),
+                    UserExtendedStatus = PersonalDiary.Domain.Enums.EnumUserExtendedStatus.New
+                });
+            
+            uow.Save();
+            Request.GetOwinContext().Authentication.SignOut();
+            return View();
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -76,6 +106,24 @@ namespace jQueryFundamentalsUI.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var userManager = new UserManager<ApplicationUser>(store);
+            ApplicationUser user = userManager.FindByEmail(model.Email);
+            var userId = user.Id;
+
+            if (result == SignInStatus.Success)
+            {
+                IGenericUnitOfWork uow = DependencyResolver.Current.GetService<IGenericUnitOfWork>();
+               //See if admin has activated this user or not.
+                var userInfo = uow.UserInfoRepository.Filter(u => u.UserExtendedStatus == PersonalDiary.Domain.Enums.EnumUserExtendedStatus.Active && u.AspNetUsers_Id.Equals(userId)).SingleOrDefault();
+                if (userInfo == null)
+                {
+                    Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");
+                    return RedirectToAction("SomeIssue");
+                }
+            }
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,6 +200,13 @@ namespace jQueryFundamentalsUI.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                user.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole
+                {
+                    RoleId = "2",//
+                    UserId = user.Id
+                });
+               
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -162,13 +217,13 @@ namespace jQueryFundamentalsUI.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ThanksForRegistering");
+                    //return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+            // If we got this far, something failed, redisplay form           
             return View(model);
         }
 

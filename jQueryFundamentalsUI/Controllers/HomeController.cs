@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalDiary.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,13 @@ namespace jQueryFundamentalsUI.Controllers
 {
     public class HomeController : Controller
     {
+        private IGenericUnitOfWork _UnitOfWork = null;
+
+        public HomeController(IGenericUnitOfWork _uow)
+        {
+            _UnitOfWork = _uow;
+        }
+
         public ActionResult Index()
         {
             return View();

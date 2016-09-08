@@ -17,7 +17,7 @@ namespace UnitTest
 
             UserInfo userInfo = new UserInfo
             {
-                AspNetUsers_Id = 1,
+                AspNetUsers_Id = "kkkkkkkkkk",
                 DOB = DateTime.Now,
                 Gender = PersonalDiary.Domain.Enums.EnumGender.Male,
                 Id = -1
