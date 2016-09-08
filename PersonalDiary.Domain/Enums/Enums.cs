@@ -12,4 +12,11 @@ namespace PersonalDiary.Domain.Enums
         Female = 1,
         Other
     }
+
+    public enum EnumNotificationType
+    {
+        Email = 0,
+        SMS = 1,
+        Call = 2,
+    }
 }

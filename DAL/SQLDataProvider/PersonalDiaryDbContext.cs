@@ -18,5 +18,7 @@ namespace DAL.SQLDataProvider
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }
